@@ -6,7 +6,6 @@ int main() {
     uintptr_t baseAddress = memory.getModuleBase("Target.exe");
 
     uintptr_t rebase =          0x140000000;                        // rebase
-    uintptr_t patch =           0x140001554;                        // patch
     uintptr_t function1 =       0x140001450;                        // function1
     uintptr_t function2 =       0x14000148B;                        // function2
     uintptr_t function3 =       0x1400014C3;                        // function3
@@ -51,9 +50,6 @@ int main() {
     (LPVOID)str, strlen(str));
 
     BOOL writeShellcode = memory.writeEx(reinterpret_cast<uintptr_t>(addrShellcode), 
-    shellcodeData, sizeof(shellcodeData));
-
-    BOOL writePatch = memory.writeEx(reinterpret_cast<uintptr_t>(addrShellcode), 
     shellcodeData, sizeof(shellcodeData));
 
     HANDLE hThread = memory.threadEx(reinterpret_cast<uintptr_t>(addrShellcode), NULL);
